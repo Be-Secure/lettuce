@@ -1,9 +1,9 @@
 name: "Microsft SBOM"
 on:
   push:
-    branches: [ "<branch_name>" ]
+    branches: [ "3.5.0.Final_release" ]
   pull_request:
-    branches: [ "<branch_name>" ]
+    branches: [ "3.5.0.Final_release" ]
 
 jobs:
   analyze:
@@ -25,7 +25,7 @@ jobs:
     - name: Generate SBOM
       run: |
         mkdir SBOMOUTPUT
-        $RUNNER_TEMP/sbom-tool generate -b SBOMOUTPUT/ -bc . -pn ${{ github.repository }} -pv <version> -ps wipro -nsb <github_main_url>
+        $RUNNER_TEMP/sbom-tool generate -b SBOMOUTPUT/ -bc . -pn ${{ github.repository }} -pv 3.5.0.Final -ps wipro -nsb https://github.com/lettuce-io/lettuce-core
     
     - name: Upload SBOM artifact
       uses: actions/upload-artifact@v3
